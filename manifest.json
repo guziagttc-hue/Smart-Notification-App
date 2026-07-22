@@ -1,0 +1,20 @@
+{
+  "name": "Smart Notification",
+  "short_name": "Smart Notif",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#092A54",
+  "theme_color": "#092A54",
+  "icons": [
+    {
+      "src": "https://res.cloudinary.com/djginu4oz/image/upload/v1784709182/Gemini_Generated_Image_ii2jxyii2jxyii2j_copy_gituqm.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://res.cloudinary.com/djginu4oz/image/upload/v1784709182/Gemini_Generated_Image_ii2jxyii2jxyii2j_copy_gituqm.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
