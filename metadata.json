@@ -1,5 +1,5 @@
 {
-  "name": "Remix: Smart Notification App",
+  "name": "Smart Notification",
   "description": "A mobile-first smart notification UI built with React and Tailwind CSS.",
   "requestFramePermissions": [
     "notifications"
