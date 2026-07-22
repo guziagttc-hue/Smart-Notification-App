@@ -12,6 +12,7 @@ import { NewEventModal } from './components/NewEventModal';
 import { TaskList } from './components/TaskList';
 import { CategoryList } from './components/CategoryList';
 import { SettingsList } from './components/SettingsList';
+import { InstallButton } from './components/InstallButton';
 import { LoginModal } from './components/LoginModal';
 import { ConfirmationModal } from './components/ConfirmationModal';
 import { InfoPage } from './components/InfoPage';
@@ -258,6 +259,8 @@ export default function App() {
         )}
 
         <BottomNav activeTab={activeTab} onTabChange={setActiveTab} t={t} />
+
+        <InstallButton t={t} />
 
         {isModalOpen && (
           <NewEventModal 
