@@ -1,0 +1,10 @@
+{
+  "name": "Remix: Smart Notification App",
+  "description": "A mobile-first smart notification UI built with React and Tailwind CSS.",
+  "requestFramePermissions": [
+    "notifications"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
