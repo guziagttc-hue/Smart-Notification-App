@@ -1,12 +1,24 @@
 import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
+import { initializeApp, applicationDefault } from "firebase-admin/app";
+import { getMessaging } from "firebase-admin/messaging";
+import { getApps } from "firebase-admin/app";
+
 
 async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // Removed Firebase Initialization
+  // Firebase Initialization
+  try {
+    initializeApp({
+      credential: applicationDefault(),
+    });
+    console.log("Firebase Admin initialized successfully");
+  } catch (error) {
+    console.error("Failed to initialize Firebase Admin:", error);
+  }
 
   app.use(express.json());
 
@@ -18,8 +30,35 @@ async function startServer() {
   });
 
   app.post("/api/send-notification", async (req, res) => {
-    // Firebase is not initialized, so we cannot send notifications
-    res.status(503).json({ error: "Firebase functionality is disabled" });
+    if (!getApps().length) {
+      return res.status(503).json({ error: "Firebase not initialized" });
+    }
+    const { deviceToken, title, body, extraData } = req.body;
+
+    if (!deviceToken) {
+      return res.status(400).json({ error: "Device Token প্রয়োজন" });
+    }
+
+    const message = {
+      notification: {
+        title: title || "নতুন নোটিফিকেশন",
+        body: body || "আপনার কাছে নতুন একটি বার্তা এসেছে。",
+      },
+      data: extraData || {},
+      token: deviceToken,
+    };
+
+    try {
+      const response = await getMessaging().send(message);
+      res.status(200).json({
+        success: true,
+        message: "নোটিফিকেশন সফলভাবে পাঠানো হয়েছে",
+        messageId: response,
+      });
+    } catch (error: any) {
+      console.error("FCM Error:", error);
+      res.status(500).json({ success: false, error: error.message });
+    }
   });
 
   // Vite middleware for development
